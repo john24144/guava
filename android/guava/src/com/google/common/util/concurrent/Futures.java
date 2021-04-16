@@ -846,7 +846,8 @@ public final class Futures extends GwtFuturesCatchingSpecialization {
         (ListenableFuture<? extends T>[])
             collection.toArray(new ListenableFuture[collection.size()]);
     final InCompletionOrderState<T> state = new InCompletionOrderState<>(copy);
-    ImmutableList.Builder<AbstractFuture<T>> delegatesBuilder = ImmutableList.builder();
+    ImmutableList.Builder<AbstractFuture<T>> delegatesBuilder =
+        ImmutableList.builderWithExpectedSize(copy.length);
     for (int i = 0; i < copy.length; i++) {
       delegatesBuilder.add(new InCompletionOrderFuture<T>(state));
     }
